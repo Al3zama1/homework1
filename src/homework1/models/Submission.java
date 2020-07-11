@@ -2,22 +2,51 @@ package homework1.models;
 
 public class Submission {
 	
-	private String StudentName;;
-	private String asnwer;
-	
-	
-	public String getStudentName() {
-		return StudentName;
-	}
-	public void setStudentName(String studentName) {
-		StudentName = studentName;
-	}
-	public String getAsnwer() {
-		return asnwer;
-	}
-	public void setAsnwer(String asnwer) {
-		this.asnwer = asnwer;
-	}
+private String studentName;
+private String answer;
+private String submissionDate;
+
+
+public Submission(String studentName, String answer, String submissionDate) {
+	this.studentName = studentName;
+	this.answer = answer;
+	this.submissionDate = submissionDate;
+}
+
+
+public String getStudentName() {
+	return studentName;
+}
+
+
+public void setStudentName(String studentName) {
+	this.studentName = studentName;
+}
+
+
+public String getAnswer() {
+	return answer;
+}
+
+
+public void setAnswer(String answer) {
+	this.answer = answer;
+}
+
+
+public String getSubmissionDate() {
+	return submissionDate;
+}
+
+
+public void setSubmissionDate(String submissionDate) {
+	this.submissionDate = submissionDate;
+}
+
+
+
+
+
 	
 	
 	

@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CreateAssignment
+ * Servlet implementation class CreateSubmission
  */
-@WebServlet("/CreateAssignment")
-public class CreateAssignment extends HttpServlet {
+@WebServlet("/CreateSubmission")
+public class CreateSubmission extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateAssignment() {
+    public CreateSubmission() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +31,6 @@ public class CreateAssignment extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		
 		out.println("<!DOCTYPE html>\n" + 
 				"<html lang=\"en\">\n" + 
 				"<head>\n" + 
@@ -40,16 +39,20 @@ public class CreateAssignment extends HttpServlet {
 				"    <title>Document</title>\n" + 
 				"</head>\n" + 
 				"<body>\n" + 
-				"    <form action=\"http://localhost:8080/homework1/CourseAssignments?course=" + request.getParameter("course") + "\" method=\"post\">\n" + 
-				"        <label for=\"assignment-name\">Assignment Name: </label>\n" + 
-				"        <input type=\"text\" name=\"assignment-name\" id=\"assignment-name\">\n" + 
+				"    <form action=\"http://localhost:8080/homework1/Submissions?course=" + request.getParameter("course") + "&assignment=" + request.getParameter("assignment") + "\" method=\"post\">\n" + 
+				"        <label for=\"student-name\">Student Name</label>\n" + 
+				"        <input id=\"student-name\" type=\"text\" name=\"student-name\">\n" + 
+				"        <br>\n" + 
+				"        <br>\n" + 
+				"        <label for=\"answer\">Answer</label>\n" + 
+				"        <textarea id=\"student-name\" name=\"answer\"></textarea>\n" + 
+				"        <br>\n" + 
 				"        <br>\n" + 
 				"        <input type=\"submit\" value=\"Create\">\n" + 
 				"    </form>\n" + 
 				"</body>\n" + 
 				"</html>");
-
-	} 
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -2,65 +2,39 @@ package homework1.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.LinkedList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import homework1.models.Courses;
+import homework1.models.Submission;
 
 /**
- * Servlet implementation class CoursesServlet
+ * Servlet implementation class Submissions
  */
-@WebServlet("/CoursesServlet")
-public class CoursesServlet extends HttpServlet {
+@WebServlet("/Submissions")
+public class Submissions extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	 
-	LinkedList<Courses> courses = new LinkedList<Courses>();
-	CourseAssignments amnts = new CourseAssignments();
-	
-	
-	Courses web = new Courses("CS3220 Web and Internet Programming");
-	Courses paradigms = new Courses("CS3035 Programming Paradigms");
-	
-	
+	 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
+ 	 
+  	 LocalDateTime now = LocalDateTime.now();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CoursesServlet() {
-    	
+    public Submissions() {
+        super();
+        // TODO Auto-generated constructor stub
     }
-    
-    
-
-	@Override
-	public void init() throws ServletException {
-		
-		System.out.println("initializing data");
-		
-		web.setAssignmentsCount(0);
-		paradigms.setAssignmentsCount(0);
-		
-		courses.add(web);
-    	courses.add(paradigms);
-	}
-
-
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getServletContext().setAttribute("coursesList", courses);
-		
-		
-		
 		
 		PrintWriter out = response.getWriter();
 		
@@ -74,32 +48,33 @@ public class CoursesServlet extends HttpServlet {
 				"<body>\n" + 
 				"    <table border=\"1\">\n" + 
 				"        <thead>\n" + 
-				"            <th>Course</th>\n" + 
-				"            <th>Assignments</th>\n" + 
+				"            <th>Student Name</th>\n" + 
+				"            <th>Answer</th>\n" + 
+				"            <th>Submitted Date</th>\n" + 
 				"        </thead>\n" + 
 				"        <tbody>\n" + 
 				"            <tr>");
-		
-		for(Courses course : courses) {
-//			out.println("<td>" + course.getName() + "</td>");
-			out.println("<td><a href=\"http://localhost:8080/homework1/CourseAssignments?course=" + course.getName() + "\">" + course.getName() + "</td>\n" + 
-					"    <td>" + course.getAssignmentsCount() + "</td>");
-			out.println("</tr>");
-		}
-		out.println(
-				"        </tbody>\n" +  
+		out.println("<td>this</td>\n" + 
+				"                <td>this</td>\n" + 
+				"            </tr>");
+		out.println("</tbody>\n" + 
 				"\n" + 
-				"    </table>\n" + 
+				"    </table>");
+		out.println("<br>\n" + 
+				"    <br>\n" + 
+				"    <a href=\"http://localhost:8080/homework1/CreateSubmission?course=" + request.getParameter("course") + "&assignment=" + request.getParameter("assignment") + "\">Create Submission</a>\n" + 
 				"</body>\n" + 
 				"</html>");
-		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		
+		Submission submission = new Submission(request.getParameter("student-name"), "answer", dtf.format(now));
+		
 		doGet(request, response);
 	}
 
