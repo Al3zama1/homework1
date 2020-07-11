@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import homework1.models.Submission;
 
@@ -20,8 +23,9 @@ import homework1.models.Submission;
 public class Submissions extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
- 	 
   	 LocalDateTime now = LocalDateTime.now();
+  	 
+  	 
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,12 +35,20 @@ public class Submissions extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		PrintWriter out = response.getWriter();
+		
+//		request.getServletContext().getAttribute("allSubmissions");
+		
+		@SuppressWarnings("unchecked")
+		HashMap<String, LinkedList<Submission>> submitions = (HashMap<String, LinkedList<Submission>>) request.getServletContext().getAttribute("allSubmissions");
+		
+		LinkedList<Submission> submition = submitions.get(request.getParameter("assignment"));
 		
 		out.println("<!DOCTYPE html>\n" + 
 				"<html lang=\"en\">\n" + 
@@ -54,9 +66,17 @@ public class Submissions extends HttpServlet {
 				"        </thead>\n" + 
 				"        <tbody>\n" + 
 				"            <tr>");
-		out.println("<td>this</td>\n" + 
-				"                <td>this</td>\n" + 
-				"            </tr>");
+		
+		for(Submission sub : submition) {
+			
+			out.println("<td>" + sub.getStudentName() + "</td>\n");
+			out.println("<td>" + sub.getAnswer() + "</td>\n");
+			out.println("<td>" + sub.getSubmissionDate() + "</td>\n");
+			out.println("</tr>");
+			
+		}
+		
+		
 		out.println("</tbody>\n" + 
 				"\n" + 
 				"    </table>");
@@ -72,8 +92,31 @@ public class Submissions extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		CourseAssignments assignments = new CourseAssignments();
 		
-		Submission submission = new Submission(request.getParameter("student-name"), "answer", dtf.format(now));
+
+		
+		
+		
+		Submission newSubmition = new Submission(request.getParameter("student-name"), request.getParameter("answer"), dtf.format(now));
+		
+		@SuppressWarnings("unchecked")
+		HashMap<String, LinkedList<Submission>> submitions = (HashMap<String, LinkedList<Submission>>) request.getServletContext().getAttribute("allSubmissions");
+		
+		LinkedList<Submission> submition = submitions.get(request.getParameter("assignment"));
+		
+		submition.add(newSubmition);
+		
+//		if (request.getParameter("course").equals("CS3220 Web and Internet Programming")) {
+//		
+//			
+//		}
+		
+		System.out.println("------- in submissions ------");
+		
+		System.out.println(newSubmition.getStudentName());
+		System.out.println(newSubmition.getAnswer());
+		System.out.println(newSubmition.getSubmissionDate());
 		
 		doGet(request, response);
 	}

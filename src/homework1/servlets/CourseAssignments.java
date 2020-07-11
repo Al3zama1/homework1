@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import homework1.models.Assignment;
 import homework1.models.Courses;
+import homework1.models.Submission;
 
 /**
  * Servlet implementation class CourseAssignments
@@ -28,6 +30,9 @@ public class CourseAssignments extends HttpServlet {
 	 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
  	 
   	 LocalDateTime now = LocalDateTime.now();
+  	 
+  	 
+  	 HashMap<String, LinkedList<Submission>> lol = new HashMap<String, LinkedList<Submission>>(); 
 	
 	
        
@@ -43,6 +48,12 @@ public class CourseAssignments extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getServletContext().setAttribute("allSubmissions", lol);
+		
+		
+		
+//		use hashmap to get the ammount of elements in the list
 		
 		
 		
@@ -70,6 +81,7 @@ public class CourseAssignments extends HttpServlet {
 		if (request.getParameter("course").equals("CS3220 Web and Internet Programming")) {
 			
 			for(Assignment assignment : web) {
+				
 
 				out.println("<td><a href=\"http://localhost:8080/homework1/Submissions?course=" + request.getParameter("course") + "&assignment=" + assignment.getName() + "\">" + assignment.getName() + "</td>\n");
 				out.println("<td>" + 0 + "</td>\n");
@@ -81,6 +93,7 @@ public class CourseAssignments extends HttpServlet {
 		} else if (request.getParameter("course").equals("CS3035 Programming Paradigms")) {
 			
 			for(Assignment assignment : paradigms) {
+				
 				
 				out.println("<td><a href=\"http://localhost:8080/homework1/Submissions?course=" + request.getParameter("course") + "&assignment=" + assignment.getName() + "\">" + assignment.getName() + "</td>\n");
 				out.println("<td>" + 0 + "</td>\n");
@@ -114,7 +127,7 @@ public class CourseAssignments extends HttpServlet {
 		
 		String value = request.getParameter("assignment-name");
 		
-		System.out.println(request.getParameter("submission"));
+		
 
 		if (request.getParameter("course").equals("CS3035 Programming Paradigms")) {
 			
@@ -122,6 +135,9 @@ public class CourseAssignments extends HttpServlet {
 			paradigms.add(new Assignment(value, dtf.format(now) ));
 
 			courses.get(1).setAssignmentsCount(paradigms.size());
+			
+			
+			lol.put(value, new LinkedList<Submission>());
 
 			
 		} else if (request.getParameter("course").equals("CS3220 Web and Internet Programming")) {
@@ -130,6 +146,8 @@ public class CourseAssignments extends HttpServlet {
 			web.add(new Assignment(value, dtf.format(now)));
 			
 			courses.get(0).setAssignmentsCount(web.size());
+			
+			lol.put(value, new LinkedList<Submission>());
 			
 			
 		}

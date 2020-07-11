@@ -5,6 +5,7 @@ public class Assignment {
 	
 	private String name;
 	private String latestSubmission;
+	private String submissionsCount;
 	
 	
 
@@ -15,6 +16,44 @@ public class Assignment {
 	
 	
 	
+	
+	
+
+	public String getLatestSubmission() {
+		return latestSubmission;
+	}
+
+
+
+
+
+
+	public void setLatestSubmission(String latestSubmission) {
+		this.latestSubmission = latestSubmission;
+	}
+
+
+
+
+
+
+	public String getSubmissionsCount() {
+		return submissionsCount;
+	}
+
+
+
+
+
+
+	public void setSubmissionsCount(String submissionsCount) {
+		this.submissionsCount = submissionsCount;
+	}
+
+
+
+
+
 
 	public String getDate() {
 		return latestSubmission;
