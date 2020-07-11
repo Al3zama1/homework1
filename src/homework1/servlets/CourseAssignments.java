@@ -2,11 +2,8 @@ package homework1.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,14 +22,6 @@ import homework1.models.Submission;
 @WebServlet("/CourseAssignments")
 public class CourseAssignments extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	List<Assignment> web = new LinkedList<Assignment>();
-	List<Assignment> paradigms = new LinkedList<Assignment>();
-	 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
- 	 
-  	 
-  	 
-  	 HashMap<String, LinkedList<Submission>> assignmentsSubmissions = new HashMap<String, LinkedList<Submission>>(); 
-	
 	
        
     /**
@@ -48,7 +37,11 @@ public class CourseAssignments extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getServletContext().setAttribute("allSubmissions", assignmentsSubmissions);
+		
+		@SuppressWarnings("unchecked")
+		LinkedList<Assignment> web =  (LinkedList<Assignment>) request.getServletContext().getAttribute("web");
+		@SuppressWarnings("unchecked")
+		LinkedList<Assignment> paradigms = (LinkedList<Assignment>) request.getServletContext().getAttribute("paradigms");
 		
 		
 		PrintWriter out = response.getWriter();
@@ -76,11 +69,15 @@ public class CourseAssignments extends HttpServlet {
 			
 			for(Assignment assignment : web) {
 				
-
+				
+				if (assignment.getTotalSubmissions() == null) {
+					assignment.setTotalSubmissions("0");
+				}
+				
 				
 
 				out.println("<td><a href=\"http://localhost:8080/homework1/Submissions?course=" + request.getParameter("course") + "&assignment=" + assignment.getName() + "\">" + assignment.getName() + "</td>\n");
-				out.println("<td>" + assignment.getSubmissionsCount() + "</td>\n");
+				out.println("<td>" + assignment.getTotalSubmissions() + "</td>\n");
 				out.println("<td>" + assignment.getDate() + "</td>\n");
 				out.println("</tr>");
 				
@@ -91,8 +88,13 @@ public class CourseAssignments extends HttpServlet {
 			for(Assignment assignment : paradigms) {
 				
 				
+				if (assignment.getTotalSubmissions() == null) {
+					assignment.setTotalSubmissions("0");
+				}
+				
+				
 				out.println("<td><a href=\"http://localhost:8080/homework1/Submissions?course=" + request.getParameter("course") + "&assignment=" + assignment.getName() + "\">" + assignment.getName() + "</td>\n");
-				out.println("<td>" + assignment.getSubmissionsCount() + "</td>\n");
+				out.println("<td>" + assignment.getTotalSubmissions() + "</td>\n");
 				out.println("<td>" + assignment.getDate() + "</td>\n");
 				out.println("</tr>");
 			}
@@ -112,6 +114,17 @@ public class CourseAssignments extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		@SuppressWarnings("unchecked")
+		LinkedList<Assignment> web =  (LinkedList<Assignment>) request.getServletContext().getAttribute("web");
+		@SuppressWarnings("unchecked")
+		LinkedList<Assignment> paradigms = (LinkedList<Assignment>) request.getServletContext().getAttribute("paradigms");
+		
+		
+		@SuppressWarnings("unchecked")
+		HashMap<String, LinkedList<Submission>> assignmentsSubmissions = (HashMap<String, LinkedList<Submission>>) request.getServletContext().getAttribute("allSubmissions");
+		
+		
+		
 
       	 
       	 @SuppressWarnings("unchecked")
@@ -124,7 +137,7 @@ public class CourseAssignments extends HttpServlet {
 		if (request.getParameter("course").equals("CS3035 Programming Paradigms")) {
 			
 //			new assignment is added to paradigms list
-			paradigms.add(new Assignment(value, dtf.format(LocalDateTime.now()) ));
+			paradigms.add(new Assignment(value, "No Submitions" ));
 
 			courses.get(1).setAssignmentsCount(paradigms.size());
 			
@@ -135,7 +148,7 @@ public class CourseAssignments extends HttpServlet {
 		} else if (request.getParameter("course").equals("CS3220 Web and Internet Programming")) {
 			
 //			new assignment is aded to web list
-			web.add(new Assignment(value, dtf.format(LocalDateTime.now())));
+			web.add(new Assignment(value, "No Submitions"));
 			
 			courses.get(0).setAssignmentsCount(web.size());
 			

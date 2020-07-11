@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
+import homework1.models.Assignment;
 import homework1.models.Submission;
 
 /**
@@ -94,6 +93,12 @@ public class Submissions extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		@SuppressWarnings("unchecked")
+		LinkedList<Assignment> web =  (LinkedList<Assignment>) request.getServletContext().getAttribute("web");
+		
+		@SuppressWarnings("unchecked")
+		LinkedList<Assignment> paradigms = (LinkedList<Assignment>) request.getServletContext().getAttribute("paradigms");
+		
 		
 		Submission newSubmition = new Submission(request.getParameter("student-name"), request.getParameter("answer"), dtf.format(LocalDateTime.now()));
 		
@@ -103,6 +108,28 @@ public class Submissions extends HttpServlet {
 		LinkedList<Submission> submition = submitions.get(request.getParameter("assignment"));
 		
 		submition.add(newSubmition);
+		
+		
+		if (request.getParameter("course").equals("CS3220 Web and Internet Programming")) {
+			
+			for (int i = 0; i < web.size(); i++) {
+
+				if (web.get(i).getName().equals(request.getParameter("assignment"))) {
+					web.get(i).setTotalSubmissions(String.valueOf(submition.size()));
+					web.get(i).setLatestSubmission(dtf.format(LocalDateTime.now()));
+				}
+			}
+
+		} else if (request.getParameter("course").equals("CS3035 Programming Paradigms")) {
+			
+			for (int i = 0; i < paradigms.size(); i++) {
+				
+				if (paradigms.get(i).getName().equals(request.getParameter("assignment"))) {
+					paradigms.get(i).setTotalSubmissions(String.valueOf(submition.size()));
+					paradigms.get(i).setLatestSubmission(dtf.format(LocalDateTime.now()));
+				}
+			}
+		}
 		
 		
 		

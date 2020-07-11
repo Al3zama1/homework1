@@ -2,7 +2,9 @@ package homework1.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import homework1.models.Assignment;
 import homework1.models.Courses;
+import homework1.models.Submission;
 
 /**
  * Servlet implementation class CoursesServlet
@@ -20,13 +24,13 @@ public class CoursesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	 
 	LinkedList<Courses> courses = new LinkedList<Courses>();
-//	CourseAssignments amnts = new CourseAssignments();
+	HashMap<String, LinkedList<Submission>> assignmentsSubmissions = new HashMap<String, LinkedList<Submission>>(); 
+	List<Assignment> web = new LinkedList<Assignment>();
+	List<Assignment> paradigms = new LinkedList<Assignment>();
+
 	
 	
-	Courses web = new Courses("CS3220 Web and Internet Programming");
-	Courses paradigms = new Courses("CS3035 Programming Paradigms");
-	
-	
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,6 +43,11 @@ public class CoursesServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
+		
+		Courses web = new Courses("CS3220 Web and Internet Programming");
+		Courses paradigms = new Courses("CS3035 Programming Paradigms");
+		
+		
 
 		web.setAssignmentsCount(0);
 		paradigms.setAssignmentsCount(0);
@@ -55,7 +64,9 @@ public class CoursesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.getServletContext().setAttribute("coursesList", courses);
-		
+		request.getServletContext().setAttribute("allSubmissions", assignmentsSubmissions);
+		request.getServletContext().setAttribute("web", web);
+		request.getServletContext().setAttribute("paradigms", paradigms);
 		
 		
 		
