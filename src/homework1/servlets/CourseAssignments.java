@@ -29,10 +29,9 @@ public class CourseAssignments extends HttpServlet {
 	List<Assignment> paradigms = new LinkedList<Assignment>();
 	 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
  	 
-  	 LocalDateTime now = LocalDateTime.now();
   	 
   	 
-  	 HashMap<String, LinkedList<Submission>> lol = new HashMap<String, LinkedList<Submission>>(); 
+  	 HashMap<String, LinkedList<Submission>> assignmentsSubmissions = new HashMap<String, LinkedList<Submission>>(); 
 	
 	
        
@@ -49,12 +48,7 @@ public class CourseAssignments extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getServletContext().setAttribute("allSubmissions", lol);
-		
-		
-		
-//		use hashmap to get the ammount of elements in the list
-		
+		request.getServletContext().setAttribute("allSubmissions", assignmentsSubmissions);
 		
 		
 		PrintWriter out = response.getWriter();
@@ -83,8 +77,10 @@ public class CourseAssignments extends HttpServlet {
 			for(Assignment assignment : web) {
 				
 
+				
+
 				out.println("<td><a href=\"http://localhost:8080/homework1/Submissions?course=" + request.getParameter("course") + "&assignment=" + assignment.getName() + "\">" + assignment.getName() + "</td>\n");
-				out.println("<td>" + 0 + "</td>\n");
+				out.println("<td>" + assignment.getSubmissionsCount() + "</td>\n");
 				out.println("<td>" + assignment.getDate() + "</td>\n");
 				out.println("</tr>");
 				
@@ -96,7 +92,7 @@ public class CourseAssignments extends HttpServlet {
 				
 				
 				out.println("<td><a href=\"http://localhost:8080/homework1/Submissions?course=" + request.getParameter("course") + "&assignment=" + assignment.getName() + "\">" + assignment.getName() + "</td>\n");
-				out.println("<td>" + 0 + "</td>\n");
+				out.println("<td>" + assignment.getSubmissionsCount() + "</td>\n");
 				out.println("<td>" + assignment.getDate() + "</td>\n");
 				out.println("</tr>");
 			}
@@ -109,9 +105,6 @@ public class CourseAssignments extends HttpServlet {
 				"</body>\n" + 
 				"    <a href=\"http://localhost:8080/homework1/CreateAssignment?course=" + request.getParameter("course") + "\">Create Assignment</a>\n" +
 				"</html>");
-		
-		
-		
 	} 
 
 	/**
@@ -127,27 +120,26 @@ public class CourseAssignments extends HttpServlet {
 		
 		String value = request.getParameter("assignment-name");
 		
-		
 
 		if (request.getParameter("course").equals("CS3035 Programming Paradigms")) {
 			
 //			new assignment is added to paradigms list
-			paradigms.add(new Assignment(value, dtf.format(now) ));
+			paradigms.add(new Assignment(value, dtf.format(LocalDateTime.now()) ));
 
 			courses.get(1).setAssignmentsCount(paradigms.size());
 			
 			
-			lol.put(value, new LinkedList<Submission>());
+			assignmentsSubmissions.put(value, new LinkedList<Submission>());
 
 			
 		} else if (request.getParameter("course").equals("CS3220 Web and Internet Programming")) {
 			
 //			new assignment is aded to web list
-			web.add(new Assignment(value, dtf.format(now)));
+			web.add(new Assignment(value, dtf.format(LocalDateTime.now())));
 			
 			courses.get(0).setAssignmentsCount(web.size());
 			
-			lol.put(value, new LinkedList<Submission>());
+			assignmentsSubmissions.put(value, new LinkedList<Submission>());
 			
 			
 		}

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +20,7 @@ public class CoursesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	 
 	LinkedList<Courses> courses = new LinkedList<Courses>();
-	CourseAssignments amnts = new CourseAssignments();
+//	CourseAssignments amnts = new CourseAssignments();
 	
 	
 	Courses web = new Courses("CS3220 Web and Internet Programming");
@@ -40,16 +39,14 @@ public class CoursesServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		
-		System.out.println("initializing data");
-		
+
 		web.setAssignmentsCount(0);
 		paradigms.setAssignmentsCount(0);
 		
 		courses.add(web);
     	courses.add(paradigms);
 	}
-
+ 
 
 
 	/**

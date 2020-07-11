@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
 import homework1.models.Submission;
 
 /**
@@ -23,7 +24,6 @@ import homework1.models.Submission;
 public class Submissions extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
-  	 LocalDateTime now = LocalDateTime.now();
   	 
   	 
        
@@ -49,6 +49,8 @@ public class Submissions extends HttpServlet {
 		HashMap<String, LinkedList<Submission>> submitions = (HashMap<String, LinkedList<Submission>>) request.getServletContext().getAttribute("allSubmissions");
 		
 		LinkedList<Submission> submition = submitions.get(request.getParameter("assignment"));
+		
+		
 		
 		out.println("<!DOCTYPE html>\n" + 
 				"<html lang=\"en\">\n" + 
@@ -92,13 +94,8 @@ public class Submissions extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		CourseAssignments assignments = new CourseAssignments();
 		
-
-		
-		
-		
-		Submission newSubmition = new Submission(request.getParameter("student-name"), request.getParameter("answer"), dtf.format(now));
+		Submission newSubmition = new Submission(request.getParameter("student-name"), request.getParameter("answer"), dtf.format(LocalDateTime.now()));
 		
 		@SuppressWarnings("unchecked")
 		HashMap<String, LinkedList<Submission>> submitions = (HashMap<String, LinkedList<Submission>>) request.getServletContext().getAttribute("allSubmissions");
@@ -107,16 +104,12 @@ public class Submissions extends HttpServlet {
 		
 		submition.add(newSubmition);
 		
-//		if (request.getParameter("course").equals("CS3220 Web and Internet Programming")) {
-//		
-//			
-//		}
 		
-		System.out.println("------- in submissions ------");
 		
-		System.out.println(newSubmition.getStudentName());
-		System.out.println(newSubmition.getAnswer());
-		System.out.println(newSubmition.getSubmissionDate());
+		
+		
+		
+		
 		
 		doGet(request, response);
 	}
