@@ -40,6 +40,9 @@ public class CreateAssignment extends HttpServlet {
 				"    <title>Document</title>\n" + 
 				"</head>\n" + 
 				"<body>\n" + 
+				"<a href=\"http://localhost:8080/homework1/CoursesServlet\"><h3>Course Management</h3></a>\n" + 
+				"<a href=\"http://localhost:8080/homework1/CourseAssignments?course=" + request.getParameter("course") + "\"><h3>" + request.getParameter("course") + "</h3></a>" +
+				"<h3>Create Assignment</h3>" +
 				"    <form action=\"http://localhost:8080/homework1/CourseAssignments?course=" + request.getParameter("course") + "\" method=\"post\">\n" + 
 				"        <label for=\"assignment-name\">Assignment Name: </label>\n" + 
 				"        <input type=\"text\" name=\"assignment-name\" id=\"assignment-name\">\n" + 

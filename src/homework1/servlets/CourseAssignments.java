@@ -54,6 +54,9 @@ public class CourseAssignments extends HttpServlet {
 				"    <title>Document</title>\n" + 
 				"</head>\n" + 
 				"<body>\n" + 
+				"<a href=\"http://localhost:8080/homework1/CoursesServlet\"><h3>Course Management</h3></a>\n" + 
+				"<a href=\"http://localhost:8080/homework1/CourseAssignments?course=" + request.getParameter("course") + "\"><h3>" + request.getParameter("course") + "</h3></a>" +
+				"<h3>Assignments</h3>" +
 				"    <table border=\"1\">\n" + 
 				"        <thead>\n" + 
 				"            <th>Assignments</th>\n" + 
@@ -104,8 +107,10 @@ public class CourseAssignments extends HttpServlet {
 				"        </tbody>\n" +  
 				"\n" + 
 				"    </table>\n" + 
-				"</body>\n" + 
+				"    <br>\n" + 
+				"    <br>\n" + 
 				"    <a href=\"http://localhost:8080/homework1/CreateAssignment?course=" + request.getParameter("course") + "\">Create Assignment</a>\n" +
+				"</body>\n" + 
 				"</html>");
 	} 
 
@@ -137,7 +142,7 @@ public class CourseAssignments extends HttpServlet {
 		if (request.getParameter("course").equals("CS3035 Programming Paradigms")) {
 			
 //			new assignment is added to paradigms list
-			paradigms.add(new Assignment(value, "No Submitions" ));
+			paradigms.add(new Assignment(value, "No Submissions" ));
 
 			courses.get(1).setAssignmentsCount(paradigms.size());
 			
@@ -148,7 +153,7 @@ public class CourseAssignments extends HttpServlet {
 		} else if (request.getParameter("course").equals("CS3220 Web and Internet Programming")) {
 			
 //			new assignment is aded to web list
-			web.add(new Assignment(value, "No Submitions"));
+			web.add(new Assignment(value, "No Submissions"));
 			
 			courses.get(0).setAssignmentsCount(web.size());
 			

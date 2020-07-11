@@ -59,6 +59,11 @@ public class Submissions extends HttpServlet {
 				"    <title>Document</title>\n" + 
 				"</head>\n" + 
 				"<body>\n" + 
+				"<a href=\"http://localhost:8080/homework1/CoursesServlet\"><h3>Course Management</h3></a>\n" + 
+				"<a href=\"http://localhost:8080/homework1/CourseAssignments?course=" + request.getParameter("course") + "\"><h3>" + request.getParameter("course") + "</h3></a>" +
+				"<h3>Submissions</h3>" +
+
+//				"<a href=\"http://localhost:8080/homework1/CourseAssignments\"><h3>" + request.getParameter("course") + "</h3></a>" +
 				"    <table border=\"1\">\n" + 
 				"        <thead>\n" + 
 				"            <th>Student Name</th>\n" + 

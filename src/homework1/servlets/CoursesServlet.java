@@ -80,6 +80,7 @@ public class CoursesServlet extends HttpServlet {
 				"    <title>Document</title>\n" + 
 				"</head>\n" + 
 				"<body>\n" + 
+				"<a href=\"http://localhost:8080/homework1/CoursesServlet\"><h3>Course Management</h3></a>" +
 				"    <table border=\"1\">\n" + 
 				"        <thead>\n" + 
 				"            <th>Course</th>\n" + 
