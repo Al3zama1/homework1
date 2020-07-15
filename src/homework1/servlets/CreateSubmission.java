@@ -39,11 +39,11 @@ public class CreateSubmission extends HttpServlet {
 				"    <title>Document</title>\n" + 
 				"</head>\n" + 
 				"<body>\n" + 
-				"<a href=\"http://localhost:8080/homework1/CoursesServlet\"><h3>Course Management</h3></a>" +
-				"<a href=\"http://localhost:8080/homework1/CourseAssignments?course=" + request.getParameter("course") + "\"><h3>" + request.getParameter("course") + "</h3></a>" +	
-				"<a href=\"http://localhost:8080/homework1/Submissions?course=" + request.getParameter("course") + "&assignment=" + request.getParameter("assignment") + "\"><h3>" + request.getParameter("assignment") + "</h3></a>" +
+				"<a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/CoursesServlet\"><h3>Course Management</h3></a>" +
+				"<a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/CourseAssignments?course=" + request.getParameter("course") + "\"><h3>" + request.getParameter("course") + "</h3></a>" +	
+				"<a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/Submissions?course=" + request.getParameter("course") + "&assignment=" + request.getParameter("assignment") + "\"><h3>" + request.getParameter("assignment") + "</h3></a>" +
 				"<h3>Create Submission</h3>" +
-				"    <form action=\"http://localhost:8080/homework1/Submissions?course=" + request.getParameter("course") + "&assignment=" + request.getParameter("assignment") + "\" method=\"post\">\n" + 
+				"    <form action=\"http://cs3.calstatela.edu:8080/cs3220stu21/Submissions?course=" + request.getParameter("course") + "&assignment=" + request.getParameter("assignment") + "\" method=\"post\">\n" + 
 				"        <label for=\"student-name\">Student Name</label>\n" + 
 				"        <input id=\"student-name\" type=\"text\" name=\"student-name\">\n" + 
 				"        <br>\n" + 

@@ -80,7 +80,7 @@ public class CoursesServlet extends HttpServlet {
 				"    <title>Document</title>\n" + 
 				"</head>\n" + 
 				"<body>\n" + 
-				"<a href=\"http://localhost:8080/homework1/CoursesServlet\"><h3>Course Management</h3></a>" +
+				"<a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/CoursesServlet\"><h3>Course Management</h3></a>" +
 				"    <table border=\"1\">\n" + 
 				"        <thead>\n" + 
 				"            <th>Course</th>\n" + 
@@ -91,7 +91,7 @@ public class CoursesServlet extends HttpServlet {
 		
 		for(Courses course : courses) {
 //			out.println("<td>" + course.getName() + "</td>");
-			out.println("<td><a href=\"http://localhost:8080/homework1/CourseAssignments?course=" + course.getName() + "\">" + course.getName() + "</td>\n" + 
+			out.println("<td><a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/CourseAssignments?course=" + course.getName() + "\">" + course.getName() + "</td>\n" + 
 					"    <td>" + course.getAssignmentsCount() + "</td>");
 			out.println("</tr>");
 		}

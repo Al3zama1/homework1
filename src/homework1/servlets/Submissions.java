@@ -59,8 +59,8 @@ public class Submissions extends HttpServlet {
 				"    <title>Document</title>\n" + 
 				"</head>\n" + 
 				"<body>\n" + 
-				"<a href=\"http://localhost:8080/homework1/CoursesServlet\"><h3>Course Management</h3></a>\n" + 
-				"<a href=\"http://localhost:8080/homework1/CourseAssignments?course=" + request.getParameter("course") + "\"><h3>" + request.getParameter("course") + "</h3></a>" +
+				"<a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/CoursesServlet\"><h3>Course Management</h3></a>\n" + 
+				"<a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/CourseAssignments?course=" + request.getParameter("course") + "\"><h3>" + request.getParameter("course") + "</h3></a>" +
 				"<h3>Submissions</h3>" +
 
 //				"<a href=\"http://localhost:8080/homework1/CourseAssignments\"><h3>" + request.getParameter("course") + "</h3></a>" +
@@ -88,7 +88,7 @@ public class Submissions extends HttpServlet {
 				"    </table>");
 		out.println("<br>\n" + 
 				"    <br>\n" + 
-				"    <a href=\"http://localhost:8080/homework1/CreateSubmission?course=" + request.getParameter("course") + "&assignment=" + request.getParameter("assignment") + "\">Create Submission</a>\n" + 
+				"    <a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/CreateSubmission?course=" + request.getParameter("course") + "&assignment=" + request.getParameter("assignment") + "\">Create Submission</a>\n" + 
 				"</body>\n" + 
 				"</html>");
 	}

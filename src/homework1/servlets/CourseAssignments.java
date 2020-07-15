@@ -54,8 +54,8 @@ public class CourseAssignments extends HttpServlet {
 				"    <title>Document</title>\n" + 
 				"</head>\n" + 
 				"<body>\n" + 
-				"<a href=\"http://localhost:8080/homework1/CoursesServlet\"><h3>Course Management</h3></a>\n" + 
-				"<a href=\"http://localhost:8080/homework1/CourseAssignments?course=" + request.getParameter("course") + "\"><h3>" + request.getParameter("course") + "</h3></a>" +
+				"<a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/CoursesServlet\"><h3>Course Management</h3></a>\n" + 
+				"<a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/CourseAssignments?course=" + request.getParameter("course") + "\"><h3>" + request.getParameter("course") + "</h3></a>" +
 				"<h3>Assignments</h3>" +
 				"    <table border=\"1\">\n" + 
 				"        <thead>\n" + 
@@ -79,7 +79,7 @@ public class CourseAssignments extends HttpServlet {
 				
 				
 
-				out.println("<td><a href=\"http://localhost:8080/homework1/Submissions?course=" + request.getParameter("course") + "&assignment=" + assignment.getName() + "\">" + assignment.getName() + "</td>\n");
+				out.println("<td><a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/Submissions?course=" + request.getParameter("course") + "&assignment=" + assignment.getName() + "\">" + assignment.getName() + "</td>\n");
 				out.println("<td>" + assignment.getTotalSubmissions() + "</td>\n");
 				out.println("<td>" + assignment.getDate() + "</td>\n");
 				out.println("</tr>");
@@ -96,7 +96,7 @@ public class CourseAssignments extends HttpServlet {
 				}
 				
 				
-				out.println("<td><a href=\"http://localhost:8080/homework1/Submissions?course=" + request.getParameter("course") + "&assignment=" + assignment.getName() + "\">" + assignment.getName() + "</td>\n");
+				out.println("<td><a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/Submissions?course=" + request.getParameter("course") + "&assignment=" + assignment.getName() + "\">" + assignment.getName() + "</td>\n");
 				out.println("<td>" + assignment.getTotalSubmissions() + "</td>\n");
 				out.println("<td>" + assignment.getDate() + "</td>\n");
 				out.println("</tr>");
@@ -109,7 +109,7 @@ public class CourseAssignments extends HttpServlet {
 				"    </table>\n" + 
 				"    <br>\n" + 
 				"    <br>\n" + 
-				"    <a href=\"http://localhost:8080/homework1/CreateAssignment?course=" + request.getParameter("course") + "\">Create Assignment</a>\n" +
+				"    <a href=\"http://cs3.calstatela.edu:8080/cs3220stu21/CreateAssignment?course=" + request.getParameter("course") + "\">Create Assignment</a>\n" +
 				"</body>\n" + 
 				"</html>");
 	} 
