@@ -1,4 +1,4 @@
-package homework1.models;
+package homework2.Model;
 
 public class Assignment {
 

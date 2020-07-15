@@ -1,4 +1,4 @@
-package homework1.servlets;
+package homework2.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import homework1.models.Assignment;
-import homework1.models.Submission;
+import homework2.Model.Assignment;
+import homework2.Model.Submission;
 
 /**
  * Servlet implementation class Submissions
@@ -47,50 +47,14 @@ public class Submissions extends HttpServlet {
 		@SuppressWarnings("unchecked")
 		HashMap<String, LinkedList<Submission>> submitions = (HashMap<String, LinkedList<Submission>>) request.getServletContext().getAttribute("allSubmissions");
 		
-		LinkedList<Submission> submition = submitions.get(request.getParameter("assignment"));
+		LinkedList<Submission> submission = submitions.get(request.getParameter("assignment"));
+		
+		request.setAttribute("submission", submission);
 		
 		
 		
-		out.println("<!DOCTYPE html>\n" + 
-				"<html lang=\"en\">\n" + 
-				"<head>\n" + 
-				"    <meta charset=\"UTF-8\">\n" + 
-				"    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" + 
-				"    <title>Document</title>\n" + 
-				"</head>\n" + 
-				"<body>\n" + 
-				"<a href=\"http://localhost:8080/homework1/CoursesServlet\"><h3>Course Management</h3></a>\n" + 
-				"<a href=\"http://localhost:8080/homework1/CourseAssignments?course=" + request.getParameter("course") + "\"><h3>" + request.getParameter("course") + "</h3></a>" +
-				"<h3>Submissions</h3>" +
-
-//				"<a href=\"http://localhost:8080/homework1/CourseAssignments\"><h3>" + request.getParameter("course") + "</h3></a>" +
-				"    <table border=\"1\">\n" + 
-				"        <thead>\n" + 
-				"            <th>Student Name</th>\n" + 
-				"            <th>Answer</th>\n" + 
-				"            <th>Submitted Date</th>\n" + 
-				"        </thead>\n" + 
-				"        <tbody>\n" + 
-				"            <tr>");
-		
-		for(Submission sub : submition) {
-			
-			out.println("<td>" + sub.getStudentName() + "</td>\n");
-			out.println("<td>" + sub.getAnswer() + "</td>\n");
-			out.println("<td>" + sub.getSubmissionDate() + "</td>\n");
-			out.println("</tr>");
-			
-		}
-		
-		
-		out.println("</tbody>\n" + 
-				"\n" + 
-				"    </table>");
-		out.println("<br>\n" + 
-				"    <br>\n" + 
-				"    <a href=\"http://localhost:8080/homework1/CreateSubmission?course=" + request.getParameter("course") + "&assignment=" + request.getParameter("assignment") + "\">Create Submission</a>\n" + 
-				"</body>\n" + 
-				"</html>");
+		response.setContentType( "text/html" );
+		request.getRequestDispatcher("/Submissions.jsp").forward(request, response);
 	}
 
 	/**

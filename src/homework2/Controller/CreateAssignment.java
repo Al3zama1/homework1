@@ -1,4 +1,4 @@
-package homework1.servlets;
+package homework2.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,28 +29,9 @@ public class CreateAssignment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		PrintWriter out = response.getWriter();
 		
-		
-		out.println("<!DOCTYPE html>\n" + 
-				"<html lang=\"en\">\n" + 
-				"<head>\n" + 
-				"    <meta charset=\"UTF-8\">\n" + 
-				"    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" + 
-				"    <title>Document</title>\n" + 
-				"</head>\n" + 
-				"<body>\n" + 
-				"<a href=\"http://localhost:8080/homework1/CoursesServlet\"><h3>Course Management</h3></a>\n" + 
-				"<a href=\"http://localhost:8080/homework1/CourseAssignments?course=" + request.getParameter("course") + "\"><h3>" + request.getParameter("course") + "</h3></a>" +
-				"<h3>Create Assignment</h3>" +
-				"    <form action=\"http://localhost:8080/homework1/CourseAssignments?course=" + request.getParameter("course") + "\" method=\"post\">\n" + 
-				"        <label for=\"assignment-name\">Assignment Name: </label>\n" + 
-				"        <input type=\"text\" name=\"assignment-name\" id=\"assignment-name\">\n" + 
-				"        <br>\n" + 
-				"        <input type=\"submit\" value=\"Create\">\n" + 
-				"    </form>\n" + 
-				"</body>\n" + 
-				"</html>");
+		response.setContentType( "text/html" );
+		request.getRequestDispatcher("/AssignmentForm.jsp").forward(request, response);
 
 	} 
 

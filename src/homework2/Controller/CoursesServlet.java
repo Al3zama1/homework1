@@ -1,4 +1,4 @@
-package homework1.servlets;
+package homework2.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import homework1.models.Assignment;
-import homework1.models.Courses;
-import homework1.models.Submission;
+import homework2.Model.Assignment;
+import homework2.Model.Courses;
+import homework2.Model.Submission;
 
 /**
  * Servlet implementation class CoursesServlet
@@ -70,37 +70,8 @@ public class CoursesServlet extends HttpServlet {
 		
 		
 		
-		PrintWriter out = response.getWriter();
-		
-		out.println("<!DOCTYPE html>\n" + 
-				"<html lang=\"en\">\n" + 
-				"<head>\n" + 
-				"    <meta charset=\"UTF-8\">\n" + 
-				"    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" + 
-				"    <title>Document</title>\n" + 
-				"</head>\n" + 
-				"<body>\n" + 
-				"<a href=\"http://localhost:8080/homework1/CoursesServlet\"><h3>Course Management</h3></a>" +
-				"    <table border=\"1\">\n" + 
-				"        <thead>\n" + 
-				"            <th>Course</th>\n" + 
-				"            <th>Assignments</th>\n" + 
-				"        </thead>\n" + 
-				"        <tbody>\n" + 
-				"            <tr>");
-		
-		for(Courses course : courses) {
-//			out.println("<td>" + course.getName() + "</td>");
-			out.println("<td><a href=\"http://localhost:8080/homework1/CourseAssignments?course=" + course.getName() + "\">" + course.getName() + "</td>\n" + 
-					"    <td>" + course.getAssignmentsCount() + "</td>");
-			out.println("</tr>");
-		}
-		out.println(
-				"        </tbody>\n" +  
-				"\n" + 
-				"    </table>\n" + 
-				"</body>\n" + 
-				"</html>");
+		response.setContentType( "text/html" );
+		request.getRequestDispatcher("/Courses.jsp").forward(request, response);
 		
 	}
 
