@@ -1,13 +1,13 @@
 package homework2.Model;
 
-public class Submission {
+public class Hw2Submission {
 	
 private String studentName;
 private String answer;
 private String submissionDate;
 
 
-public Submission(String studentName, String answer, String submissionDate) {
+public Hw2Submission(String studentName, String answer, String submissionDate) {
 	this.studentName = studentName;
 	this.answer = answer;
 	this.submissionDate = submissionDate;

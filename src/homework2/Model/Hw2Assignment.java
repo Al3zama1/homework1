@@ -1,14 +1,15 @@
 package homework2.Model;
 
-public class Assignment {
+public class Hw2Assignment {
 
 	private String name;
 	private String latestSubmission;
 	private String totalSubmissions;
 
-	public Assignment(String name, String date) {
+	public Hw2Assignment(String name, String date) {
 		this.name = name;
 		this.latestSubmission = date;
+		this.totalSubmissions = "0";
 	}
 
 	public String getLatestSubmission() {

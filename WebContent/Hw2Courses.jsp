@@ -8,7 +8,7 @@
 <title>Courses</title>
 </head>
 <body>
-	<a href="http://localhost:8080/homework2/CoursesServlet">Course Management</a>
+	<a href="http://localhost:8080/homework2/Hw2CoursesServlet">Course Management</a>
 	<table border="1">
 		<thead>
 			<th>Course</th>
@@ -17,7 +17,7 @@
 		<tbody>
 			<c:forEach items="${coursesList}" var="value">
 				<tr>
-					<td><a href="http://localhost:8080/homework2/CourseAssignments?course=${value.getName()}">${value.getName()}</a></td>
+					<td><a href="http://localhost:8080/homework2/Hw2CourseAssignments?course=${value.getName()}">${value.getName()}</a></td>
 					<td>${value.getAssignmentsCount()}</td>
 				</tr>
 			</c:forEach>

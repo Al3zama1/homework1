@@ -8,9 +8,9 @@
 <title>Submissions</title>
 </head>
 <body>
-	<a href="http://localhost:8080/homework2/CoursesServlet">Course Management</a> 
+	<a href="http://localhost:8080/homework2/Hw2CoursesServlet">Course Management</a> 
 	<br>
-	<a href="http://localhost:8080/homework2/CourseAssignments?course=${param.course}">${param.course}</a>
+	<a href="http://localhost:8080/homework2/Hw2CourseAssignments?course=${param.course}">${param.course}</a>
 	<table border="1">
 		<thead>
 			<th>Student Name</th>
@@ -28,6 +28,6 @@
 		</tbody>
 	</table>
 	<br>
-	<a href="http://localhost:8080/homework2/CreateSubmission?course=${param.course}&assignment=${param.assignment}">Create Submission</a>
+	<a href="http://localhost:8080/homework2/Hw2CreateSubmission?course=${param.course}&assignment=${param.assignment}">Create Submission</a>
 </body>
 </html>

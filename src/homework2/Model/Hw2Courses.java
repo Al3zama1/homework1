@@ -2,17 +2,17 @@ package homework2.Model;
 
 import java.util.LinkedList;
 
-public class Courses {
+public class Hw2Courses {
 	
 	private String name;
 	private int AssignmentsCount;
-	private LinkedList<Assignment> assignments;
+	private LinkedList<Hw2Assignment> assignments;
 	
 	
 	
 	
 	
-	public Courses(String name) {
+	public Hw2Courses(String name) {
 		this.name = name;
 //		this.assignments = new LinkedList<Assignment>();
 	}
