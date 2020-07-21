@@ -23,14 +23,30 @@
 		<tbody>
 		
 			<c:forEach items="${assignments}" var="value">
-				<tr>
-					<td><a
-						href="http://localhost:8080/homework2/Hw2Submissions?course=${param.course}&assignment=${value.getName()}">${value.getName()}</td>
-					<td>${value.getTotalSubmissions()}</td>
-					<td>${value.getDate()}</td>
-				</tr>
-			</c:forEach>
 			
+				<tr>
+				
+					<td>
+					
+						<a href="http://localhost:8080/homework2/Hw2Submissions?course=${param.course}&assignment=${value.getName()}">${value.getName()}</a>
+					
+					</td>
+					<td>
+					
+						${value.getSubmissions().size()}
+					
+					</td>
+					
+					<td>
+					
+						${value.getLatestSubmissionDate()}
+					
+					</td>
+				
+				</tr>
+			
+			</c:forEach>
+		
 		</tbody>
 	</table>
 	<br>

@@ -1,40 +1,20 @@
 package homework2.Model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Hw2Assignment {
 
 	private String name;
-	private String latestSubmission;
-	private String totalSubmissions;
+	LinkedList<Hw2Submission> submissions;
+	private String latestSubmissionDate;
 
-	public Hw2Assignment(String name, String date) {
+	public Hw2Assignment(String name) {
 		this.name = name;
-		this.latestSubmission = date;
-		this.totalSubmissions = "0";
+		this.submissions = new LinkedList<Hw2Submission>();
+		this.latestSubmissionDate = "No Submissions";
 	}
 
-	public String getLatestSubmission() {
-		return latestSubmission;
-	}
-
-	public void setLatestSubmission(String latestSubmission) {
-		this.latestSubmission = latestSubmission;
-	}
-
-	public String getTotalSubmissions() {
-		return totalSubmissions;
-	}
-
-	public void setTotalSubmissions(String totalSubmissions) {
-		this.totalSubmissions = totalSubmissions;
-	}
-
-	public String getDate() {
-		return latestSubmission;
-	}
-
-	public void setDate(String date) {
-		this.latestSubmission = date;
-	}
 
 	public String getName() {
 		return name;
@@ -43,5 +23,25 @@ public class Hw2Assignment {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
+	public List<Hw2Submission> getSubmissions() {
+		return submissions;
+	}
+
+
+	public String getLatestSubmissionDate() {
+		return latestSubmissionDate;
+	}
+
+
+	public void setLatestSubmissionDate(String latestSubmissionDate) {
+		this.latestSubmissionDate = latestSubmissionDate;
+	}
+	
+	
+	
+	
+	
 
 }

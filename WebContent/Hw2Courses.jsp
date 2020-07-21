@@ -15,10 +15,10 @@
 			<th>Assignments</th>
 		</thead>
 		<tbody>
-			<c:forEach items="${coursesList}" var="value">
+			<c:forEach items="${courses}" var="value">
 				<tr>
 					<td><a href="http://localhost:8080/homework2/Hw2CourseAssignments?course=${value.getName()}">${value.getName()}</a></td>
-					<td>${value.getAssignmentsCount()}</td>
+					<td>${value.getAssignments().size()}</td>
 				</tr>
 			</c:forEach>
 			

@@ -13,6 +13,7 @@
 	<br>
 	<a href="http://localhost:8080/homework2/Hw2Submissions?course=${param.course}&assignment=${param.assignment}">${param.assignment}</a>
 	<h3>Create Submission</h3>
+	
 	<form action="http://localhost:8080/homework2/Hw2Submissions?course=${param.course}&assignment=${param.assignment}" method="post">
 		<label for="student-name">Student Name</label>
 		<input type="text" id="student-name" name="student-name">

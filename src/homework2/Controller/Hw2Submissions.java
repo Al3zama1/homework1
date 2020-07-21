@@ -3,8 +3,8 @@ package homework2.Controller;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import homework2.Model.Hw2Assignment;
+import homework2.Model.Hw2Courses;
 import homework2.Model.Hw2Submission;
 
 
@@ -33,14 +33,13 @@ public class Hw2Submissions extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
-		@SuppressWarnings("unchecked")
-		HashMap<String, LinkedList<Hw2Submission>> submitions = (HashMap<String, LinkedList<Hw2Submission>>) request.getServletContext().getAttribute("allSubmissions");
 		
-		LinkedList<Hw2Submission> submission = submitions.get(request.getParameter("assignment"));
+		String course = request.getParameter("course");
+		String assignment = request.getParameter("assignment");
 		
-		request.setAttribute("submission", submission);
 		
+		 List<Hw2Submission> subs = findAssignment(course, assignment);
+		 request.setAttribute("submission", subs);
 		
 		
 		response.setContentType( "text/html" );
@@ -48,35 +47,75 @@ public class Hw2Submissions extends HttpServlet {
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		@SuppressWarnings("unchecked")
-		HashMap<String, LinkedList<Hw2Assignment>> allAssignments = (HashMap<String, LinkedList<Hw2Assignment>>) request.getServletContext().getAttribute("courseAssignments");
-		
-		LinkedList<Hw2Assignment> assignments = allAssignments.get(request.getParameter("course"));
-		
-		
-		Hw2Submission newSubmition = new Hw2Submission(request.getParameter("student-name"), request.getParameter("answer"), dtf.format(LocalDateTime.now()));
-		
-		@SuppressWarnings("unchecked")
-		HashMap<String, LinkedList<Hw2Submission>> submitions = (HashMap<String, LinkedList<Hw2Submission>>) request.getServletContext().getAttribute("allSubmissions");
-		
-		LinkedList<Hw2Submission> submition = submitions.get(request.getParameter("assignment"));
-		
-		submition.add(newSubmition);
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+		LinkedList<Hw2Courses> courses = (LinkedList<Hw2Courses>) request.getServletContext().getAttribute("courses");
+		String course = request.getParameter("course");
+		String assignment = request.getParameter("assignment");
+		String student = request.getParameter("student-name");
+		String answer = request.getParameter("answer");
 		
 		
-		for (int i = 0; i < assignments.size(); i++) {
-			if (assignments.get(i).getName().equals(request.getParameter("assignment"))) {
-				assignments.get(i).setTotalSubmissions(String.valueOf(submition.size()));
-				assignments.get(i).setLatestSubmission(dtf.format(LocalDateTime.now()));
-			}
-		}
+		for (int i = 0; i < courses.size(); i++) {
 			
-		
+			if (courses.get(i).getName().equals(course)) {
+				
+				for (int j = 0; j < courses.get(i).getAssignments().size(); j++) {
+					
+					if (courses.get(i).getAssignments().get(j).getName().equals(assignment)) {
+						
+						courses.get(i).getAssignments().get(j).getSubmissions().add(new Hw2Submission(student, answer, dtf.format(now)));
+						courses.get(i).getAssignments().get(j).setLatestSubmissionDate(dtf.format(now));
+						
+						break;
+					}
+					
+				}
+				
+			}
+			
+		}
+				
 		
 		doGet(request, response);
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	private List<Hw2Submission> findAssignment (String course, String assignment) {
+		
+		LinkedList<Hw2Courses> courses = (LinkedList<Hw2Courses>) getServletContext().getAttribute("courses");
+		
+		 List<Hw2Submission> subs = null;
+				
+				
+		for (int i = 0; i < courses.size(); i++) {
+			
+			if (courses.get(i).getName().equals(course)) {
+				
+				for (int j = 0; j < courses.get(i).getAssignments().size(); j++) {
+					
+					if (courses.get(i).getAssignments().get(j).getName().equals(assignment)) {
+						
+						subs = courses.get(i).getAssignments().get(j).getSubmissions();
+						
+						break;
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		
+		return subs;
+		
+		
 	}
 
 }

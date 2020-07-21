@@ -1,11 +1,12 @@
 package homework2.Model;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Hw2Courses {
 	
 	private String name;
-	private int AssignmentsCount;
+//	each course has a list of assignments
 	private LinkedList<Hw2Assignment> assignments;
 	
 	
@@ -14,7 +15,7 @@ public class Hw2Courses {
 	
 	public Hw2Courses(String name) {
 		this.name = name;
-//		this.assignments = new LinkedList<Assignment>();
+		this.assignments = new LinkedList<Hw2Assignment>();
 	}
 	
 	public String getName() {
@@ -23,18 +24,11 @@ public class Hw2Courses {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getAssignmentsCount() {
-		return AssignmentsCount;
+
+	public List<Hw2Assignment> getAssignments() {
+		return assignments;
 	}
-	public void setAssignmentsCount(int assignmentsCount) {
-		AssignmentsCount = assignmentsCount;
-	}
-//	public LinkedList<Assignment> getAssignments() {
-//		return assignments;
-//	}
-//	public void setAssignments(LinkedList<Assignment> assignments) {
-//		this.assignments = assignments;
-//	}
+
 	
 	
 	
