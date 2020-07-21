@@ -8,27 +8,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet("/Hw2CreateSubmission")
 public class Hw2CreateSubmission extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-    public Hw2CreateSubmission() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	public Hw2CreateSubmission() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		response.setContentType( "text/html" );
+		response.setContentType("text/html");
 		request.getRequestDispatcher("/Hw2SubmissionForm.jsp").forward(request, response);
 	}
 
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -8,11 +8,11 @@
 <title>Assignments</title>
 </head>
 <body>
-	<a href="http://localhost:8080/homework2/Hw2CoursesServlet">Course
+	<a href="http://cs3.calstatela.edu:8080/cs3220stu21/Hw2CoursesServlet">Course
 		Management</a>
 	<br>
 	<a
-		href="http://localhost:8080/homework2/Hw2CourseAssignments?course=${param.course}">${param.course}</a>
+		href="http://cs3.calstatela.edu:8080/cs3220stu21/Hw2CourseAssignments?course=${param.course}">${param.course}</a>
 	<h3>Assignments</h3>
 	<table border="1">
 		<thead>
@@ -28,7 +28,7 @@
 				
 					<td>
 					
-						<a href="http://localhost:8080/homework2/Hw2Submissions?course=${param.course}&assignment=${value.getName()}">${value.getName()}</a>
+						<a href="http://cs3.calstatela.edu:8080/cs3220stu21/Hw2Submissions?course=${param.course}&assignment=${value.getName()}">${value.getName()}</a>
 					
 					</td>
 					<td>
@@ -51,7 +51,7 @@
 	</table>
 	<br>
 	<a
-		href="http://localhost:8080/homework2/Hw2CreateAssignment?course=${param.course}">Create
+		href="http://cs3.calstatela.edu:8080/cs3220stu21/Hw2CreateAssignment?course=${param.course}">Create
 		Assignment</a>
 </body>
 </html>
